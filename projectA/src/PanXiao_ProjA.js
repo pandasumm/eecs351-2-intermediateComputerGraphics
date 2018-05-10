@@ -458,12 +458,18 @@ function reset() {
 	for (var ii = toSpringCount;
 	ii < toSpringCount+springCount; ii++) {
 		PSsystem.ps[ii].makeSpring(ii-toSpringCount);
-		PSsystem.psdot[ii].makeFire();
-		PSsystem.ps1[ii].makeFire();
-		PSsystem.psM[ii].makeFire();
-		PSsystem.psMdot[ii].makeFire();
-		PSsystem.psB[ii].makeFire();
-		PSsystem.psBdot[ii].makeFire();
+        PSsystem.psdot[ii].makeSpring(ii-toSpringCount);
+		PSsystem.ps1[ii].makeSpring(ii-toSpringCount);
+		PSsystem.psM[ii].makeSpring(ii-toSpringCount);
+		PSsystem.psMdot[ii].makeSpring(ii-toSpringCount);
+		PSsystem.psB[ii].makeSpring(ii-toSpringCount);
+		PSsystem.psBdot[ii].makeSpring(ii-toSpringCount);
+		// PSsystem.psdot[ii].makeFire();
+		// PSsystem.ps1[ii].makeFire();
+		// PSsystem.psM[ii].makeFire();
+		// PSsystem.psMdot[ii].makeFire();
+		// PSsystem.psB[ii].makeFire();
+		// PSsystem.psBdot[ii].makeFire();
 	}
 
 	PSsystem.ps[partCount+tonadoCount+1].val[PART_YVEL] = boid_speed;

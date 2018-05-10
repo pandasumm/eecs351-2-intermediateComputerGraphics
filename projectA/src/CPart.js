@@ -90,6 +90,9 @@ CPart.prototype.reset = function() {
 		this.val[PART_XVEL] = 0;
 		this.val[PART_YVEL] = 0;
 		this.val[PART_ZVEL] = 0;
+        // this.val[PART_XVEL] = 0.2*Math.random();
+		// this.val[PART_YVEL] = 0.2*Math.random();
+		// this.val[PART_ZVEL] = 0.2*Math.random();
 		this.appliedForces = [F_SPRING];
 		this.appliedWall = [WTYPE_GROUND, WTYPE_STICK, WTYPE_SLOT, F_GRAV_P];
 	}
@@ -125,7 +128,8 @@ CPart.prototype.makeSpring = function(n) {
 
 	this.val[PART_ZPOS] = spring_z + springLength * 1.5 * (n % springInterval);
 
-	this.val[PART_YPOS] += springLength * parseInt(n / springInterval);
+	this.val[PART_YPOS] += springLength * parseInt(n / springInterval) + 0.1*Math.random();
+    this.val[PART_XPOS] +=  0.5*Math.random();
 
 	this.val[PART_DIAM] = 15*springLength;
 }

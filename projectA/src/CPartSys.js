@@ -10,7 +10,7 @@ const NU_SOLV_VERLET      = 6;       // Verlet semi-implicit integrator;
 const NU_SOLV_VEL_VERLET  = 7;       // 'Velocity-Verlet'semi-implicit integrator
 const NU_SOLV_MAX         = 8;       // number of solver types available.
 
-var g_solver = NU_SOLV_BACK_EULER;
+var g_solver = NU_SOLV_EULER;
 var g_render = 0;
 var g_mouse = 0;
 var g_mouse_x = 0;
@@ -139,7 +139,8 @@ CPartSys.prototype.applyAllForces = function(s) {
 
 				if (this.forces[i].forceType == F_SPRING && s[j].appliedForces.indexOf(F_SPRING) >= 0) {
 					var target = j - 1;
-					if (s[target].partType != SPRING || s[j].val[PART_YPOS] != s[target].val[PART_YPOS]) continue;
+					// if (s[target].partType != SPRING || s[j].val[PART_YPOS] != s[target].val[PART_YPOS]) continue;
+                    if (s[target].partType != SPRING) continue;
 
 					this.forces[i].applySpring(s[j], s[target]);
 				}
@@ -277,7 +278,8 @@ CPartSys.prototype.doConstraint = function(ps, ps0) {
 			}
 			if (this.walls[j].wallType == WTYPE_STICK && ps[i].appliedWall.indexOf(WTYPE_STICK) >= 0) {
 				var target = i - 1;
-				if (ps[target].partType != SPRING || ps[i].val[PART_YPOS] != ps[target].val[PART_YPOS]) continue;
+				// if (ps[target].partType != SPRING || ps[i].val[PART_YPOS] != ps[target].val[PART_YPOS]) continue;
+                if (ps[target].partType != SPRING) continue;
 				// var flag = ((target - toSpringCount) / springInterval) % 2 ? 1 : 1;
 				this.walls[j].byStick(ps[i], ps0[i], ps[target],ps0[target], springLength);
 			}

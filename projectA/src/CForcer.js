@@ -148,19 +148,19 @@ CForcer.prototype.applySpring = function(p, q) {
 	q.val[PART_Y_FTOT] -= mag * dis_y;
 	q.val[PART_Z_FTOT] -= mag * dis_z;
 
-	var xtmp = p.val[PART_XVEL] - q.val[PART_XVEL];
-	var ytmp = p.val[PART_YVEL] - q.val[PART_YVEL];
-	var ztmp = p.val[PART_ZVEL] - q.val[PART_ZVEL];
-
-	mag = (xtmp * dis_x + ytmp * dis_y + ztmp * dis_z) * 0.8;
-
-	p.val[PART_X_FTOT] -= mag * dis_x;
-	p.val[PART_Y_FTOT] -= mag * dis_y;
-	p.val[PART_Z_FTOT] -= mag * dis_z;
-
-	q.val[PART_X_FTOT] += mag * dis_x;
-	q.val[PART_Y_FTOT] += mag * dis_y;
-	q.val[PART_Z_FTOT] += mag * dis_z;
+	// var xtmp = p.val[PART_XVEL] - q.val[PART_XVEL];
+	// var ytmp = p.val[PART_YVEL] - q.val[PART_YVEL];
+	// var ztmp = p.val[PART_ZVEL] - q.val[PART_ZVEL];
+    //
+	// mag = (xtmp * dis_x + ytmp * dis_y + ztmp * dis_z) * 0.8;
+    //
+	// p.val[PART_X_FTOT] -= mag * dis_x;
+	// p.val[PART_Y_FTOT] -= mag * dis_y;
+	// p.val[PART_Z_FTOT] -= mag * dis_z;
+    //
+	// q.val[PART_X_FTOT] += mag * dis_x;
+	// q.val[PART_Y_FTOT] += mag * dis_y;
+	// q.val[PART_Z_FTOT] += mag * dis_z;
 }
 
 CForcer.prototype.applyMouse = function(p) {
