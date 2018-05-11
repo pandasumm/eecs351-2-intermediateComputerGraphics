@@ -69,30 +69,38 @@ CForcer.prototype.applyWind = function(p) {
 	if (Math.abs(distanceY) < 0.1) distanceY = Math.sign(Math.random()*2-1)*0.1;
 	if (Math.abs(distanceZ) < 0.1) distanceZ = Math.sign(Math.random()*2-1)*0.1;
 
-	var dist_2 = distanceX*distanceX + distanceY*distanceY + distanceZ*distanceZ;
-	var dist = Math.sqrt(dist_2);
+    p.val[PART_X_FTOT] =  5* (distanceY);
+	p.val[PART_Y_FTOT] =  5* (-distanceX);
+    p.val[PART_X_FTOT] += 5* ( (2-p.val[PART_ZPOS] )*(-distanceX));
+    p.val[PART_Y_FTOT] += 5* ( (2-p.val[PART_ZPOS] )*(-distanceY));
 
-	var h_dist_2 = distanceX*distanceX + distanceY*distanceY;
-	var h_dist = Math.sqrt(h_dist_2);
+    p.val[PART_Z_FTOT] = -4.832/p.val[PART_MASS]
+	p.val[PART_Z_FTOT] += Math.abs(distanceX)*10 + Math.abs(distanceY)*10 - 4*p.val[PART_ZPOS]
 
-	var F1 = vec4.fromValues(-distanceY,  distanceX, 0.0, 1.0);
-	vec4.scale(F1, F1, 1/h_dist_2*10/3.0);
-
-	var F2 = vec4.fromValues(-distanceX, -distanceY, 0.0, 1.0);
-	vec4.scale(F2, F2, 1/dist_2*10/3.0);
-
-	var F3 = vec4.fromValues(0.0, 0.0, 0.5, 1.0);
-	vec4.scale(F3, F3, 1/h_dist);
-
-	var tempF = vec4.create();
-	vec4.add(tempF, tempF, F1);
-	vec4.add(tempF, tempF, F2);
-	vec4.add(tempF, tempF, F3);
-
-	p.val[PART_X_FTOT] += tempF[0];
-	p.val[PART_Y_FTOT] += tempF[1];
-	p.val[PART_Z_FTOT] += tempF[2];
-	p.val[PART_Z_FTOT] += this.gravConst / 10.0 * 9;
+	// var dist_2 = distanceX*distanceX + distanceY*distanceY + distanceZ*distanceZ;
+	// var dist = Math.sqrt(dist_2);
+    //
+	// var h_dist_2 = distanceX*distanceX + distanceY*distanceY;
+	// var h_dist = Math.sqrt(h_dist_2);
+    //
+	// var F1 = vec4.fromValues(-distanceY,  distanceX, 0.0, 1.0);
+	// vec4.scale(F1, F1, 1/h_dist_2*10/3.0);
+    //
+	// var F2 = vec4.fromValues(-distanceX, -distanceY, 0.0, 1.0);
+	// vec4.scale(F2, F2, 1/dist_2*10/3.0);
+    //
+	// var F3 = vec4.fromValues(0.0, 0.0, 0.5, 1.0);
+	// vec4.scale(F3, F3, 1.0/h_dist + 1/dist_2*10/5.0);
+    //
+	// var tempF = vec4.create();
+	// vec4.add(tempF, tempF, F1);
+	// vec4.add(tempF, tempF, F2);
+	// vec4.add(tempF, tempF, F3);
+    //
+	// p.val[PART_X_FTOT] += tempF[0];
+	// p.val[PART_Y_FTOT] += tempF[1];
+	// p.val[PART_Z_FTOT] += tempF[2];
+	// p.val[PART_Z_FTOT] += this.gravConst / 10.0 * 9;
 }
 
 CForcer.prototype.applyCharge = function(p, center, lead) {

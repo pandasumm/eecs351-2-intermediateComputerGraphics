@@ -7,10 +7,10 @@ var g_canvasID;									// HTML-5 'canvas' element ID#
 
 var floatsPerVertex = 8;
 
-var partCount   = 100;
+var partCount   = 0;
 var tonadoCount = 500;
 var boidCount   = 90;
-var flameCount  = 600;
+var flameCount  = 3000;
 var springCount = 10;
 
 
@@ -33,8 +33,8 @@ var boid_z    = 1.0;
 var flame_x   = 0.0;
 var flame_y   = 0.0;
 var flame_z   = 1.0;
-var spring_x  = 0.0 + moveDistance;
-var spring_y  = 0.0;
+var spring_x  = 0.0;
+var spring_y  = 0.0 + moveDistance;
 var spring_z  = 0.0;
 
 var g_boid_view = 0;
@@ -86,7 +86,7 @@ var g_timeStep = 1000/60.0;
 // For mouse/keyboard:------------------------
 var g_show1 = 1;								// 0==Show, 1==Hide VBO1 contents on-screen.
 var g_show2 = 1;								// 	"					"			VBO2		"				"				"
-var showBox = true;
+var showBox = false;
 
 var timeStep = 1 / 60.0;
 var g_drag = 0.985;

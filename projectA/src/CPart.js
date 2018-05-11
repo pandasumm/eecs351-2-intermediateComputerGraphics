@@ -62,7 +62,7 @@ CPart.prototype.reset = function() {
 		this.val[PART_XPOS] = 0.2 + 0.5*xcyc[0] + tonado_x;
 		this.val[PART_YPOS] = 0.2 + 0.5*xcyc[1] + tonado_y;
 		this.val[PART_ZPOS] = 0.2 + 0.5*xcyc[2] + tonado_z;
-		this.appliedForces = [F_WIND, F_GRAV_P];
+		this.appliedForces = [F_WIND];
 		this.appliedWall = [WTYPE_VCYL_IN];
 	}
 	if (this.partType == FLOCK) {

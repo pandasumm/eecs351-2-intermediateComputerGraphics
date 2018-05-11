@@ -186,7 +186,7 @@ CWall.prototype.byCylinder = function(s, s0) {
 	var dis_x = s.val[PART_XPOS] - this.x;
 	var dis_y = s.val[PART_YPOS] - this.y;
 	var dis = Math.sqrt(dis_x*dis_x + dis_y*dis_y);
-	if (dis > 1.0) {
+	if (dis > 2.0) {
 		s.val[PART_XPOS] = s0.val[PART_XPOS];
 		s.val[PART_YPOS] = s0.val[PART_YPOS];
 
@@ -203,13 +203,7 @@ CWall.prototype.byBall = function(s, s0) {
 
 	var dis = Math.sqrt(dis_x*dis_x + dis_y*dis_y + dis_z*dis_z);
 	if (dis > 3) {
-		s.val[PART_XPOS] = s0.val[PART_XPOS];
-		s.val[PART_YPOS] = s0.val[PART_YPOS];
-		s.val[PART_ZPOS] = s0.val[PART_ZPOS];
-
-		s.val[PART_XVEL] = -s0.val[PART_XVEL]*g_drag;
-		s.val[PART_YVEL] = -s0.val[PART_YVEL]*g_drag;
-		s.val[PART_ZVEL] = -s0.val[PART_ZVEL]*g_drag;
+        s.makeFire();
 	}
 }
 

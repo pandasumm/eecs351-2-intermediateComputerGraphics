@@ -74,7 +74,8 @@ var g_Eye  = vec4.fromValues(-90.0, 0.0, 90.0, 0.0);
 var	g_Look = vec4.fromValues(-89.0, 0.0, 89.0, 0.0);
 
 var theta2D = Math.PI / 2;
-var theta3D = Math.PI / 4;;
+var theta3D = Math.PI / 4;
+// var theta3D = Math.PI / 8;;
 
 function initVBO1() {
 //=============================================================================
@@ -299,6 +300,7 @@ function draw() {
 function update() {
 	PSsystem.solver(timeStep);
 	PSsystem.doConstraint(PSsystem.ps1, PSsystem.ps);
+    PSsystem.UpdateColor(PSsystem.ps);
 	PSsystem.StateVecSwap(PSsystem.ps, PSsystem.ps1);
 	draw();
 }
@@ -388,47 +390,49 @@ function keydown(ev) {
     { return; }
 
 	var r    = Math.sin(theta3D);
+    // var r = 1;
 	var temp = vec4.fromValues(r*Math.sin(theta2D), r*Math.cos(theta2D), -Math.cos(theta3D), 0.0);
 
 	vec4.add(g_Look, g_Eye, temp);
+    console.log(g_Look, g_eye);
     draw();
 }
-
-function viewGravity() {
-	g_Eye  = vec4.fromValues(-20.0, 0.0, 1.0, 0.0);
-	g_Look = vec4.fromValues(-19.0, 0.0, 1.0, 0.0);
-	theta3D = Math.PI / 2;
-}
-function viewTonado() {
-	g_Eye  = vec4.fromValues(-20.0, -moveDistance, 1.0, 1.0);
-	g_Look = vec4.fromValues(-19.0 , -moveDistance, 1.0, 1.0);
-	theta3D = Math.PI / 2;
-}
-function viewBoid() {
-	var leadID = partCount+tonadoCount+1;
-	g_Eye = vec4.fromValues(PSsystem.ps1[leadID].val[PART_XPOS],
-							PSsystem.ps1[leadID].val[PART_YPOS]+0.001,
-							PSsystem.ps1[leadID].val[PART_ZPOS]+5*moveDistance, 1);
-	g_Look = vec4.fromValues(PSsystem.ps1[leadID].val[PART_XPOS],
-							PSsystem.ps1[leadID].val[PART_YPOS]+0.001,
-							PSsystem.ps1[leadID].val[PART_ZPOS]+5*moveDistance-1, 1);
-	theta3D = 0;
-
-}
-function viewFlame() {
-	g_Eye  = vec4.fromValues(-30.0, moveDistance, 1.0, 0.0);
-	g_Look = vec4.fromValues(-29.0, moveDistance, 1.0, 0.0);
-	theta3D = Math.PI / 2;
-}
-function viewSpring() {
-	var local_x = spring_x - springLength * 100;
-	var local_y = spring_y + parseInt(springCount / springInterval) / 2 * springLength;
-	var local_z = spring_z + springInterval / 2 * springLength;
-	g_Eye  = vec4.fromValues(local_x, local_y, local_z, 1.0);
-	g_Look = vec4.fromValues(local_x+1, local_y, local_z, 1.0);
-	theta3D = Math.PI / 2;
-	// theta2D = 0;
-}
+//
+// function viewGravity() {
+// 	g_Eye  = vec4.fromValues(-20.0, 0.0, 1.0, 0.0);
+// 	g_Look = vec4.fromValues(-19.0, 0.0, 1.0, 0.0);
+// 	theta3D = Math.PI / 2;
+// }
+// function viewTonado() {
+// 	g_Eye  = vec4.fromValues(-20.0, -moveDistance, 1.0, 1.0);
+// 	g_Look = vec4.fromValues(-19.0 , -moveDistance, 1.0, 1.0);
+// 	theta3D = Math.PI / 2;
+// }
+// function viewBoid() {
+// 	var leadID = partCount+tonadoCount+1;
+// 	g_Eye = vec4.fromValues(PSsystem.ps1[leadID].val[PART_XPOS],
+// 							PSsystem.ps1[leadID].val[PART_YPOS]+0.001,
+// 							PSsystem.ps1[leadID].val[PART_ZPOS]+5*moveDistance, 1);
+// 	g_Look = vec4.fromValues(PSsystem.ps1[leadID].val[PART_XPOS],
+// 							PSsystem.ps1[leadID].val[PART_YPOS]+0.001,
+// 							PSsystem.ps1[leadID].val[PART_ZPOS]+5*moveDistance-1, 1);
+// 	theta3D = 0;
+//
+// }
+// function viewFlame() {
+// 	g_Eye  = vec4.fromValues(-30.0, moveDistance, 1.0, 0.0);
+// 	g_Look = vec4.fromValues(-29.0, moveDistance, 1.0, 0.0);
+// 	theta3D = Math.PI / 2;
+// }
+// function viewSpring() {
+// 	var local_x = spring_x - springLength * 100;
+// 	var local_y = spring_y + parseInt(springCount / springInterval) / 2 * springLength;
+// 	var local_z = spring_z + springInterval / 2 * springLength;
+// 	g_Eye  = vec4.fromValues(local_x, local_y, local_z, 1.0);
+// 	g_Look = vec4.fromValues(local_x+1, local_y, local_z, 1.0);
+// 	theta3D = Math.PI / 2;
+// 	// theta2D = 0;
+// }
 
 function reset() {
 	for (var i = 0; i < partCount+tonadoCount+boidCount+flameCount+springCount; i++) {

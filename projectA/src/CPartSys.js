@@ -255,6 +255,18 @@ CPartSys.prototype.StateVecSwap = function(s0, s1) {
 	}
 }
 
+CPartSys.prototype.UpdateColor = function(s) {
+
+    j = partCount + tonadoCount+ boidCount;
+	for (var i = 0; i < flameCount; i++) {
+		s[j+i].val[PART_R] = s[j+i].val[PART_ZPOS]/4 + 0.5;
+        s[j+i].val[PART_G] = s[j+i].val[PART_ZPOS]/4;
+        s[j+i].val[PART_B] = s[j+i].val[PART_ZPOS]/5;
+	}
+    // console.log("updating color")
+}
+
+
 CPartSys.prototype.doConstraint = function(ps, ps0) {
 	for(var i = 0; i < ps.length; i++) {			// for every particle in s0 state:
 		for (var j = 0; j < this.walls.length; j++) {
