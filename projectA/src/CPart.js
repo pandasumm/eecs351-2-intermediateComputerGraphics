@@ -72,7 +72,6 @@ CPart.prototype.reset = function() {
         this.val[PART_YVEL] = 0;
         this.val[PART_ZVEL] = 0;
         this.appliedForces = [F_CHARGE, F_MOUSE];
-        // this.appliedWall = [WTYPE_VBALL_OUT, WTYPE_VCYL_OUT, WTYPE_VBOX_OUT];
     }
     if (this.partType == FIRE) {
         this.val[PART_XPOS] = 0.2 + 0.5 * xcyc[0] + flame_x;
@@ -89,9 +88,6 @@ CPart.prototype.reset = function() {
         this.val[PART_XVEL] = 0;
         this.val[PART_YVEL] = 0;
         this.val[PART_ZVEL] = 0;
-        // this.val[PART_XVEL] = 0.2*Math.random();
-        // this.val[PART_YVEL] = 0.2*Math.random();
-        // this.val[PART_ZVEL] = 0.2*Math.random();
         this.appliedForces = [F_SPRING];
         this.appliedWall = [WTYPE_GROUND, WTYPE_STICK, WTYPE_SLOT, F_GRAV_P];
     }
