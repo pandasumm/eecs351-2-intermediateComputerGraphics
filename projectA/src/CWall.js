@@ -98,18 +98,10 @@ function CWall(type) {
         this.x = spring_x;
         this.y = spring_y;
         this.z = spring_z;
-    } else if (this.wallType == WTYPE_VBALL_OUT) {
-        this.x = flame_x;
-        this.y = flame_y;
-        this.z = flame_z + 2.0;
     } else if (this.wallType == WTYPE_VCYL_IN) {
         this.x = tonado_x;
         this.y = tonado_y;
         this.z = tonado_z;
-    } else if (this.wallType == WTYPE_VBOX_OUT) {
-        this.x = -moveDistance;
-        this.y = 0;
-        this.z = 1;
     }
 
     this.xmin = this.x - 1;
@@ -210,51 +202,6 @@ CWall.prototype.byBall = function(s, s0) {
     var dis = Math.sqrt(dis_x * dis_x + dis_y * dis_y + dis_z * dis_z);
     if (dis > 3) {
         s.makeFire();
-    }
-}
-
-CWall.prototype.byBallOut = function(s, s0) {
-    var dis_x = s.val[PART_XPOS] - this.x;
-    var dis_y = s.val[PART_YPOS] - this.y;
-    var dis_z = s.val[PART_ZPOS] - this.z;
-
-    var dis = Math.sqrt(dis_x * dis_x + dis_y * dis_y + dis_z * dis_z);
-    if (dis < 3) {
-        s.val[PART_XPOS] = s0.val[PART_XPOS];
-        s.val[PART_YPOS] = s0.val[PART_YPOS];
-        s.val[PART_ZPOS] = s0.val[PART_ZPOS];
-
-        s.val[PART_XVEL] = -s0.val[PART_XVEL] * g_drag * g_rest * 0.3;
-        s.val[PART_YVEL] = -s0.val[PART_YVEL] * g_drag * g_rest * 0.3;
-        s.val[PART_ZVEL] = -s0.val[PART_ZVEL] * g_drag * g_rest * 0.3;
-    }
-}
-
-CWall.prototype.byCylOut = function(s, s0) {
-
-    var dis_x = s.val[PART_XPOS] - this.x;
-    var dis_y = s.val[PART_YPOS] - this.y;
-    var dis = Math.sqrt(dis_x * dis_x + dis_y * dis_y);
-    if (dis < 1.0 && s.val[PART_ZPOS] > this.zmin && s.val[PART_ZPOS] < this.zmax) {
-        s.val[PART_XPOS] = s0.val[PART_XPOS];
-        s.val[PART_YPOS] = s0.val[PART_YPOS];
-        s.val[PART_ZPOS] = s0.val[PART_ZPOS];
-
-        s.val[PART_XVEL] = -s0.val[PART_XVEL] * g_drag * g_rest;
-        s.val[PART_YVEL] = -s0.val[PART_YVEL] * g_drag * g_rest;
-        s.val[PART_ZVEL] = -s0.val[PART_ZVEL] * g_drag * g_rest;
-    }
-}
-
-CWall.prototype.byBoxOut = function(s, s0, r) {
-    if (s.val[PART_XPOS] > this.x - r && s.val[PART_XPOS] < this.x + r && s.val[PART_YPOS] > this.y - r && s.val[PART_YPOS] < this.y + r && s.val[PART_ZPOS] > this.z - r && s.val[PART_ZPOS] < this.y + r) {
-        s.val[PART_XPOS] = s0.val[PART_XPOS];
-        s.val[PART_YPOS] = s0.val[PART_YPOS];
-        s.val[PART_ZPOS] = s0.val[PART_ZPOS];
-
-        s.val[PART_XVEL] = -s0.val[PART_XVEL] * g_drag;
-        s.val[PART_YVEL] = -s0.val[PART_YVEL] * g_drag;
-        s.val[PART_ZVEL] = -s0.val[PART_ZVEL] * g_drag;
     }
 }
 

@@ -161,19 +161,14 @@ function initVBO2() {
     }
 
     gl.vertexAttribPointer(a_ColorLoc2, 3, gl.FLOAT, false, 8 * FSIZE2, 4 * FSIZE2);
-
     gl.enableVertexAttribArray(a_ColorLoc2);
-
     a_PtSizeLoc2 = gl.getAttribLocation(g_ShaderID2, 'a_PtSize');
-
     gl.vertexAttribPointer(a_PtSizeLoc2, 1, gl.FLOAT, false, 8 * FSIZE2, 7 * FSIZE2);
-
     u_render = gl.getUniformLocation(g_ShaderID2, 'u_renderMode');
 
     return g_BufVerts2;
 }
 
-var supertemp = 0;
 function draw() {
     //=============================================================================
     // Clear on-screen HTML-5 <canvas> object:
@@ -191,12 +186,6 @@ function draw() {
         g_ProjMatrix.setPerspective(10, g_canvasID.width / g_canvasID.height, 1, 10000);
         gl.uniformMatrix4fv(u_ProjMatrix, false, g_ProjMatrix.elements);
         gl.bindBuffer(gl.ARRAY_BUFFER, g_vboID1);
-        if (supertemp == 0) {
-            console.log("g_ModelMatrix = ", g_ModelMatrix);
-            console.log("g_ViewMatrix = ", g_ViewMatrix);
-            console.log("g_ProjMatrix = ", g_ProjMatrix);
-            supertemp = 1;
-        }
 
         var temp_j = g_BufVerts1 - springCount;
         for (var i = partCount + tonadoCount + boidCount + flameCount; i < partCount + tonadoCount + boidCount + flameCount + springCount; i++) {
@@ -294,7 +283,6 @@ function update() {
     draw();
 }
 
-
 function keydown(ev) {
     // ------------------------------------------------------
     //HTML calls this'Event handler' or 'callback function' when we press a key:
@@ -323,8 +311,6 @@ function keydown(ev) {
     } else if (ev.keyCode == 189) {
         g_Eye[2] -= 1;
     } else if (ev.keyCode == 65) {
-        // g_Eye[1] += diff[0] * speedup;
-        // g_Eye[0] -= diff[1] * speedup;
         g_Eye[0] -= Math.cos(theta2D) * speedup;
         g_Eye[1] += Math.sin(theta2D) * speedup;
 
@@ -342,11 +328,9 @@ function keydown(ev) {
     }
 
     var r = Math.sin(theta3D);
-    // var r = 1;
     var temp = vec4.fromValues(r * Math.sin(theta2D), r * Math.cos(theta2D), -Math.cos(theta3D), 0.0);
 
     vec4.add(g_Look, g_Eye, temp);
-    console.log(g_Look, g_eye);
     draw();
 }
 
@@ -427,6 +411,5 @@ function myMouseDown(ev, gl, canvas) {
     g_mouse = !g_mouse;
     g_mouse_x = yp;
     g_mouse_y = -xp;
-
-    console.log(g_mouse_x, g_mouse_y);
+    // console.log(g_mouse_x, g_mouse_y);
 };

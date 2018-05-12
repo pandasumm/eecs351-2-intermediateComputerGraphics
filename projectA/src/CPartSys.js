@@ -2,15 +2,13 @@ const NU_SOLV_EULER = 0; // Euler integration: forward,explicit,...
 const NU_SOLV_MIDPOINT = 1; // Midpoint Method (see Pixar Tutorial)
 const NU_SOLV_ADAMS_BASH = 2; // Adams-Bashforth Explicit Integrator
 const NU_SOLV_RUNGEKUTTA = 3; // Arbitrary degree, set by 'solvDegree'
-
 const NU_SOLV_BACK_EULER = 4; // Iterative implicit solver;'back-winding'
 const NU_SOLV_BACK_MIDPT = 5;
-
 const NU_SOLV_VERLET = 6; // Verlet semi-implicit integrator;
 const NU_SOLV_VEL_VERLET = 7; // 'Velocity-Verlet'semi-implicit integrator
 const NU_SOLV_MAX = 8; // number of solver types available.
 
-var g_solver = NU_SOLV_EULER;
+var g_solver = NU_SOLV_MIDPOINT;
 var g_render = 0;
 var g_mouse = 0;
 var g_mouse_x = 0;

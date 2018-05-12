@@ -42,11 +42,8 @@ CPart.prototype.reset = function() {
     this.val[PART_R] = 0.2 + 0.8 * Math.random();
     this.val[PART_G] = 0.2 + 0.8 * Math.random();
     this.val[PART_B] = 0.2 + 0.8 * Math.random();
-    this.val[PART_MASS] = 0.9 + 0.2 * Math.random();
     this.val[PART_MASS] = 1.0;
     this.val[PART_DIAM] = 1.0 + 10.0 * Math.random();
-    this.val[PART_RENDMODE] = Math.floor(4.0 * Math.random());
-    this.val[PART_AGE] = 0.0;
 
     xcyc = roundRand3D();
     if (this.partType == GRAVITY) {
@@ -88,7 +85,7 @@ CPart.prototype.reset = function() {
         this.val[PART_XVEL] = 0;
         this.val[PART_YVEL] = 0;
         this.val[PART_ZVEL] = 0;
-        this.appliedForces = [F_SPRING];
+        this.appliedForces = [F_SPRING, F_GRAV_P];
         this.appliedWall = [WTYPE_GROUND, WTYPE_STICK, WTYPE_SLOT, F_GRAV_P];
     }
 }
@@ -109,13 +106,13 @@ CPart.prototype.makeFire = function() {
     this.val[PART_YVEL] = INIT_VEL * Math.cos(alpha) * speedup / 7.0;
     this.val[PART_ZVEL] = INIT_VEL * Math.sin(theta + Math.PI / 3) * speedup / 1.0;
 
-    this.val[PART_DIAM] = 1.0 + 10.0 * Math.random();
+    this.val[PART_DIAM] = 1.0 + 3.0 * Math.random();
 
     this.val[PART_R] = 0.6 + 0.2 * Math.random();
     this.val[PART_G] = 0.1 + 0.5 * Math.random();
     this.val[PART_B] = 0.1 + 0.5 * Math.random();
 
-    this.val[PART_AGE] = -Math.random();
+    // this.val[PART_AGE] = -Math.random();
 
 }
 

@@ -8,9 +8,9 @@ var g_canvasID; // HTML-5 'canvas' element ID#
 var floatsPerVertex = 8;
 
 var partCount = 0;
-var tonadoCount = 500;
+var tonadoCount = 2000;
 var boidCount = 90;
-var flameCount = 3000;
+var flameCount = 5000;
 var springCount = 10;
 
 // gndVerts = new Float32Array([]);
@@ -69,8 +69,6 @@ var u_ProjMatrix;
 var u_ModelMatrixLoc2; //  						... in Shader 2
 var u_ViewMatrix2;
 var u_ProjMatrix2;
-//var u_VBOnumLoc1;						  GPU storage location for u_VBOnum uniform.
-//var u_VBOnumLoc2;						 							... in Shader 2
 
 // For animation:---------------------
 var g_last = Date.now(); // Timestamp: set after each frame of animation,
@@ -78,8 +76,8 @@ var g_fps_num = 0;
 
 var g_timeStep = 1000 / 60.0;
 // For mouse/keyboard:------------------------
-var g_show1 = 1; // 0==Show, 1==Hide VBO1 contents on-screen.
-var g_show2 = 1; // 	"					"			VBO2		"				"				"
+var g_show1 = 1;
+var g_show2 = 1;
 var showBox = false;
 
 var timeStep = 1 / 60.0;
