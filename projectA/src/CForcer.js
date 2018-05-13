@@ -83,28 +83,21 @@ CForcer.prototype.applyCharge = function(p, center, lead) {
 	var F2 = 1.0;
 	var F3 = 2.0;
 
-	var leave_center_x = avoidMinMax(center[0]-p.val[PART_XPOS]);
-	var leave_center_y = avoidMinMax(center[1]-p.val[PART_YPOS]);
-	var leave_center_z = avoidMinMax(center[2]-p.val[PART_ZPOS]);
+	var leave_center_x = avoidMinMax(center[PART_XPOS]-p.val[PART_XPOS]);
+	var leave_center_y = avoidMinMax(center[PART_YPOS]-p.val[PART_YPOS]);
+	var leave_center_z = avoidMinMax(center[PART_ZPOS]-p.val[PART_ZPOS]);
 
-	// add center force
 	p.val[PART_X_FTOT] += F1*leave_center_x*Math.abs(leave_center_x);
 	p.val[PART_Y_FTOT] += F1*leave_center_y*Math.abs(leave_center_y);
 	p.val[PART_Z_FTOT] += F1*leave_center_z*Math.abs(leave_center_z);
 
-	// leave center force
-	p.val[PART_X_FTOT] += F2/(leave_center_x*leave_center_x*(leave_center_x/Math.abs(leave_center_x)));
-	p.val[PART_Y_FTOT] += F2/(leave_center_y*leave_center_y*(leave_center_y/Math.abs(leave_center_y)));
-	p.val[PART_Z_FTOT] += F2/(leave_center_z*leave_center_z*(leave_center_z/Math.abs(leave_center_z)));
+	p.val[PART_X_FTOT] += F2/(leave_center_x*Math.abs(leave_center_x));
+	p.val[PART_Y_FTOT] += F2/(leave_center_y*Math.abs(leave_center_y));
+	p.val[PART_Z_FTOT] += F2/(leave_center_z*Math.abs(leave_center_z));
 
-	// follow general velocity
 	var lead_dis_x = lead.val[PART_XPOS]-p.val[PART_XPOS];
 	var lead_dis_y = lead.val[PART_YPOS]-p.val[PART_YPOS];
 	var lead_dis_z = lead.val[PART_ZPOS]-p.val[PART_ZPOS];
-
-	var lead_sp_x = lead.val[PART_XVEL]-p.val[PART_XVEL];
-	var lead_sp_y = lead.val[PART_YVEL]-p.val[PART_YVEL];
-	var lead_sp_z = lead.val[PART_ZVEL]-p.val[PART_ZVEL];
 
 	p.val[PART_X_FTOT] += F3*lead_dis_x*Math.abs(lead_dis_x);
 	p.val[PART_Y_FTOT] += F3*lead_dis_y*Math.abs(lead_dis_y);
@@ -131,14 +124,4 @@ CForcer.prototype.applySpring = function(p, q) {
 	q.val[PART_Y_FTOT] -= mag * dis_y;
 	q.val[PART_Z_FTOT] -= mag * dis_z;
 
-}
-
-CForcer.prototype.applyMouse = function(p) {
-	var dis_x = p.val[PART_XPOS] - g_mouse_x;
-	var dis_y = p.val[PART_YPOS] - g_mouse_y;
-	var dis = Math.sqrt(dis_x*dis_x + dis_y*dis_y);
-	dis = Math.max(dis, 0.1);
-	var f = boid_speed * boid_speed / dis;
-	p.val[PART_X_FTOT] += f*dis_x/dis;
-	p.val[PART_Y_FTOT] += f*dis_y/dis;
 }

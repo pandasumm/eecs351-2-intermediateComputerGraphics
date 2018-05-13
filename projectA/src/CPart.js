@@ -68,7 +68,7 @@ CPart.prototype.reset = function() {
         this.val[PART_XVEL] = 0;
         this.val[PART_YVEL] = 0;
         this.val[PART_ZVEL] = 0;
-        this.appliedForces = [F_CHARGE, F_MOUSE];
+        this.appliedForces = [F_CHARGE];
     }
     if (this.partType == FIRE) {
         this.val[PART_XPOS] = 0.2 + 0.5 * xcyc[0] + flame_x;

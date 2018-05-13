@@ -13,10 +13,6 @@ function main() {
         return;
     }
 
-    g_canvasID.onmousedown = function(ev) {
-        myMouseDown(ev, gl, g_canvasID)
-    };
-
     g_ShaderID1 = createProgram(gl, VSHADER_1SRC, FSHADER_1SRC); // for VBO1,
     g_ShaderID2 = createProgram(gl, VSHADER_2SRC, FSHADER_2SRC); // for VBO2.
 
@@ -397,19 +393,3 @@ function showOutBox() {
     showBox = !showBox;
     console.log(showBox);
 }
-
-function myMouseDown(ev, gl, canvas) {
-    //==============================================================================
-    var rect = ev.target.getBoundingClientRect();
-    var xp = ev.clientX - rect.left - g_canvasID.width / 2;
-    var yp = ev.clientY - rect.top - g_canvasID.height / 2;
-
-    isDrag = true;
-    xMclik = xp;
-    yMclik = yp;
-
-    g_mouse = !g_mouse;
-    g_mouse_x = yp;
-    g_mouse_y = -xp;
-    // console.log(g_mouse_x, g_mouse_y);
-};

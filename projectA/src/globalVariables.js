@@ -9,7 +9,7 @@ var floatsPerVertex = 8;
 
 var partCount = 0;
 var tonadoCount = 2000;
-var boidCount = 90;
+var boidCount = 100;
 var flameCount = 5000;
 var springCount = 10;
 

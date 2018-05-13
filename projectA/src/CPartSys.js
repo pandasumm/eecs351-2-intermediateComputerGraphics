@@ -145,9 +145,6 @@ CPartSys.prototype.applyAllForces = function(s) {
 
                 this.forces[i].applySpring(s[j], s[target]);
             }
-            if (g_mouse == 1 && this.forces[i].forceType == F_MOUSE && s[j].appliedForces.indexOf(F_MOUSE) >= 0) {
-                this.forces[i].applyMouse(s[j]);
-            }
         }
     }
 }
