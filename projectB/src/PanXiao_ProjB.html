@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>PanXiao_ProjB</title>
+</head>
+
+<body onload="main()" onresize="browserResize()">
+    <canvas id="webgl" width="800" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <div>
+
+        Anti-Aliasing:
+        <button onclick="antiAliasing(2);">2*2</button>
+        <button onclick="antiAliasing(4);">4*4</button> Light1:
+        <button onclick="Light1switch();">ON/OFF</button> Light2:
+        <button onclick="Light2switch();">ON/OFF</button>
+    </div>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-quat.js"></script>
+    <script src="../lib/glMatrix.js"></script>
+
+
+
+    <script src="lights-JT.js"></script>
+    <script src="materials_Ayerdi.js"></script>
+    <script src="VBOboxes.js"></script>
+    <script src="Week01_LineGrid.js"></script>
+    <script src="CCamera.js"></script>
+    <script src="CGeom.js"></script>
+    <script src="CImgBuf.js"></script>
+    <script src="Cscene.js"></script>
+    <!-- <script src="PanXiao_ProjB.js"></script> -->
+
+
+</body>
+
+</html>
